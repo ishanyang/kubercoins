@@ -17,3 +17,13 @@ spec:
       containers:
       - image: redis
         name: redis
+        livenessProbe:
+          exec:
+            command:
+            - /tini
+            - -s
+            - --
+            - redis-cli
+            - ping
+          initialDelaySeconds: 30
+          periodSeconds: 5
